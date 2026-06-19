@@ -26,9 +26,9 @@ class StockTakeController extends BaseController
         return $this->successResponse($st, 'Stock take created', 201);
     }
 
-    public function show(StockTake $stockTake)
+    public function show(StockTake $st)
     {
-        return $this->successResponse($stockTake->load('items.product', 'createdBy'));
+        return $this->successResponse($st->load('items.product', 'createdBy'));
     }
 
     public function complete(StockTake $st)

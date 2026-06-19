@@ -52,12 +52,12 @@ Route::middleware(['auth:sanctum', 'set.store'])->group(function () {
     Route::apiResource('suppliers', SupplierController::class);
 
     // Purchase Orders
-    Route::apiResource('purchase-orders', PurchaseOrderController::class);
+    Route::apiResource('purchase-orders', PurchaseOrderController::class)->parameters(['purchase-orders' => 'po']);
     Route::post('purchase-orders/{po}/approve', [PurchaseOrderController::class, 'approve']);
     Route::post('purchase-orders/{po}/cancel', [PurchaseOrderController::class, 'cancel']);
 
     // Goods Received Notes
-    Route::apiResource('goods-received-notes', GoodsReceivedNoteController::class);
+    Route::apiResource('goods-received-notes', GoodsReceivedNoteController::class)->parameters(['goods-received-notes' => 'grn']);
     Route::post('goods-received-notes/{grn}/post', [GoodsReceivedNoteController::class, 'post']);
 
     // Transactions (POS Sales)
@@ -94,11 +94,11 @@ Route::middleware(['auth:sanctum', 'set.store'])->group(function () {
     Route::post('quotes/{quote}/convert', [QuoteController::class, 'convertToTransaction']);
 
     // Sales Orders
-    Route::apiResource('sales-orders', SalesOrderController::class);
+    Route::apiResource('sales-orders', SalesOrderController::class)->parameters(['sales-orders' => 'so']);
     Route::post('sales-orders/{so}/convert', [SalesOrderController::class, 'convertToTransaction']);
 
     // Stock Takes
-    Route::apiResource('stock-takes', StockTakeController::class);
+    Route::apiResource('stock-takes', StockTakeController::class)->parameters(['stock-takes' => 'st']);
     Route::post('stock-takes/{st}/complete', [StockTakeController::class, 'complete']);
     Route::post('stock-takes/{st}/post', [StockTakeController::class, 'post']);
 

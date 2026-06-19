@@ -27,11 +27,12 @@ class PurchaseOrderController extends BaseController
         ]);
 
         $po = PurchaseOrder::create([
-            'supplier_id' => $validated['supplier_id'],
-            'order_date' => $validated['order_date'],
+            'po_number'     => 'PO-' . str_pad(PurchaseOrder::count() + 1, 5, '0', STR_PAD_LEFT),
+            'supplier_id'   => $validated['supplier_id'],
+            'order_date'    => $validated['order_date'],
             'expected_date' => $validated['expected_date'] ?? null,
-            'created_by' => auth()->id(),
-            'status' => 'draft',
+            'created_by'    => auth()->id(),
+            'status'        => 'draft',
         ]);
 
         foreach ($validated['items'] as $item) {
